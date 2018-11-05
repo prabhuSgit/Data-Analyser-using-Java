@@ -38,7 +38,7 @@ public class DataReader {
         return null;
     }
     
-    public String[] getFileHeader() throws IOException{
+  public String[] getFileHeader() throws IOException{
         if(header == null){
             String line = "";
             if((line = reader.readLine()) != null){

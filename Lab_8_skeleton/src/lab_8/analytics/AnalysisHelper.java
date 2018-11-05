@@ -24,14 +24,52 @@ import lab_8.entities.User;
 public class AnalysisHelper {
     
     
+    
     public void userWithMostLikes(){
         
+        Map<Integer, Integer> userLikecount = new HashMap<Integer, Integer>();
+
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        for(User user : users.values()){
+        for(Comment c : user.getComments()){
+        int likes = 0;
+        if(userLikecount.containsKey(user.getId()))
+        likes = userLikecount.get(user.getId());
+        likes += c.getLikes();
+        userLikecount.put(user.getId(), likes);
+        }
+    }
         
+        int max = 0;
+        int maxID = 0;
+        for(int id : userLikecount.keySet()){
+            if(userLikecount.get(id) > max){
+                max = userLikecount.get(id);
+                maxID = id;
+            }
+        }
+        System.out.println("No of most likes: " + max);
+        System.out.println("User with most likes: " + maxID);
     }
     
     public void getFiveMostLikedComment(){
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+
+        List<Comment> commentList = new ArrayList<>(comments.values());
+
+        Collections.sort(commentList, new Comparator<Comment>() {
+        @Override
+        public int compare(Comment o1, Comment o2) {
+        //so as to get decending list
+        return o2.getLikes() - o1.getLikes();
+        }
+ }); 
         
-        
+        System.out.println("5 most liked comments : ");
+        for(int i = 0 ; i < commentList.size() && i < 5; i++){
+            System.out.println(commentList.get(i));
+        }
     }
+    
     
 }
