@@ -63,7 +63,8 @@ public class Lab_8 {
         int likes = Integer.parseInt(row[3]);
         int postId = Integer.parseInt(row[1]);
         String comment = row[5];
-        Comment c = new Comment(commentId,commentinguserId, postId, comment,likes);
+        int comments = Integer.parseInt(row[2]);
+        Comment c = new Comment(commentId,commentinguserId, postId, comment,likes, comments);
         DataStore.getInstance().getComments().put(commentId,c);
         Map<Integer,User> users = DataStore.getInstance().getUsers();
         if(users.containsKey(commentinguserId))
@@ -87,6 +88,8 @@ public class Lab_8 {
     private void runAnalysis(){
         helper.userWithMostLikes();
         helper.getFiveMostLikedComment();
+        helper.getPostWithMostComments();
+        helper.getInactiveUsersBasedOnPosts();
     }
     
 }
