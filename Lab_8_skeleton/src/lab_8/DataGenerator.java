@@ -97,21 +97,16 @@ public class DataGenerator {
         //the loop for orders
         while(postId < postIdsRange && commentId < commentIdsRange) {
             int iterations = rand.nextInt(10);
-            
             while(iterations > 0){
                 int likeCount = rand.nextInt(likeRange);
                 int commentingUserId = rand.nextInt(userIdsRange);
                 String comment = "Some Random Commen with Id "+commentId;
-                
                 String column = commentId+","+postId+","+postingUserId+","+likeCount+","+commentingUserId+","+comment;
-                
                 writer.append(column);
                 writer.append(LINE_BREAK);
-                
                 commentId++;
                 iterations--;
             }
-            
             postingUserId = rand.nextInt(postIdsRange);
             postId++;
         }
