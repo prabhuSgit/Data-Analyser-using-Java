@@ -92,6 +92,8 @@ public class Lab_8 {
         helper.proactiveUserComPosLikes();
         helper.getPostWithMostComments();
         helper.getInactiveUsersBasedOnPosts();
+        helper.getPostMostLikedComment();
+        helper.getAverage();
     }
     
 }
