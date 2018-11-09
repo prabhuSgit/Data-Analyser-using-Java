@@ -84,7 +84,7 @@ public class AnalysisHelper {
 
             }
         }
-
+        
         int max = 0;
         int maxID = 0;
         for (int id : postCommentcount.keySet()) {
