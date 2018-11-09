@@ -90,6 +90,8 @@ public class Lab_8 {
         helper.inactiveUserComments();
         helper.inactiveUserComPosLikes();
         helper.proactiveUserComPosLikes();
+        helper.getPostWithMostComments();
+        helper.getInactiveUsersBasedOnPosts();
     }
     
 }

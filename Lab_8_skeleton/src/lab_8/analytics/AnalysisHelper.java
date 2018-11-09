@@ -47,6 +47,7 @@ public class AnalysisHelper {
         }
         System.out.println("User with most likes: " + max + "\n" + users.get(maxid));
     }
+    
     //Lab
     public void getFiveMostLikedComment() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
@@ -144,4 +145,59 @@ public class AnalysisHelper {
             System.out.println("User id :" + userList.get(i) + "<-Comments+Posts");
         }
     }
+    
+     public void getPostWithMostComments() {
+
+        Map<Integer, Integer> postCommentcount = new HashMap<Integer, Integer>();
+
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        for (Post post : posts.values()) {
+            int comments = 0;
+            for (Comment c : post.getComments()) {
+                comments++;
+                postCommentcount.put(post.getPostId(), comments);
+
+            }
+        }
+
+        int max = 0;
+        int maxID = 0;
+        for (int id : postCommentcount.keySet()) {
+            if (postCommentcount.get(id) > max) {
+                max = postCommentcount.get(id);
+                maxID = id;
+            }
+        }
+
+        System.out.println("No of most comments: " + max + "\n" + "PostID:" + posts.get(maxID));
+
+    }
+     
+     public void getInactiveUsersBasedOnPosts() {
+       Map<Integer, Integer> userpostcount = new HashMap<Integer, Integer>();
+       Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+       for (Post p : posts.values()) {
+           if (userpostcount.containsKey(p.getUserId())) {
+               int count = userpostcount.get(p.getUserId());
+               userpostcount.put(p.getUserId(), count + 1);
+           } else {
+               userpostcount.put(p.getUserId(), 1);
+           }
+
+       }
+
+       List<Map.Entry<Integer, Integer>> postList
+               = new LinkedList<Map.Entry<Integer, Integer>>(userpostcount.entrySet());
+
+       Collections.sort(postList, new Comparator<Map.Entry<Integer, Integer>>() {
+           public int compare(Map.Entry<Integer, Integer> o1,
+                   Map.Entry<Integer, Integer> o2) {
+               return (o1.getValue()) - (o2.getValue());
+           }
+       });
+       System.out.println("5 most inactive Users as per posts: ");
+       for (int i = 0; i < postList.size() && i < 5; i++) {
+           System.out.println("User id :" + postList.get(i));
+       }
+   }
 }
