@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/entities/User.java</file>
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/Lab_8.java</file>
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/entities/Post.java</file>
@@ -11,6 +12,16 @@
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/DataReader.java</file>
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/DataGenerator.java</file>
             <file>file:/Users/pravinash/Lab8_HomeWork_BusinessSquad/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/analytics/AnalysisHelper.java</file>
+=======
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/entities/Comment.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/Lab_8.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/entities/Post.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/entities/User.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/DataGenerator.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/DataReader.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/analytics/AnalysisHelper.java</file>
+            <file>file:/C:/Users/Prabhu%20Surbamanian/Lab8_Work/lab8_homework_businesssquad/Lab_8_skeleton/src/lab_8/analytics/DataStore.java</file>
+>>>>>>> 8100784fdcfeaf9dc8a0ac911b6c8733f30259ea
         </group>
     </open-files>
 </project-private>
