@@ -89,6 +89,7 @@ public class Lab_8 {
         helper.getFiveMostLikedComment();
         helper.getPostMostLikedComment();
         helper.getAverage();
+        //helper.getProactiveUser();
     }
     
 }
