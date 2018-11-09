@@ -23,7 +23,7 @@ import lab_8.entities.User;
  * @author harshalneelkamal
  */
 public class AnalysisHelper {
-
+    //Lab
     public void userWithMostLikes() {
         Map<Integer, Integer> userLikecount = new HashMap<>();
         Map<Integer, User> users = DataStore.getInstance().getUsers();
@@ -47,7 +47,7 @@ public class AnalysisHelper {
         }
         System.out.println("User with most likes: " + max + "\n" + users.get(maxid));
     }
-
+    //Lab
     public void getFiveMostLikedComment() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
@@ -81,7 +81,7 @@ public class AnalysisHelper {
         });
         System.out.println("5 most inactive Users as per Comments: ");
         for (int i = 0; i < userList.size() && i < 5; i++) {
-            System.out.println("User id :" + userList.get(i));
+            System.out.println("User id :" + userList.get(i) + "<-Total Comments");
         }
     }
 
@@ -93,7 +93,6 @@ public class AnalysisHelper {
             int comment = 0;
             int post = 0;
             for (Comment c : user.getComments()) {
-//                if (c.getUserId() == p.getUserId()) {
                 comment++;
             }
             for (Post p : posts.values()) {
@@ -101,18 +100,48 @@ public class AnalysisHelper {
                     post++;
                 }
             }
-//            userCount.put(user.getId(), count);
+            int totCount = comment + post;
+            userCount.put(user.getId(), totCount);
         }
-        List<Integer> commentList = new ArrayList<>(userCount.values());
-        Collections.sort(commentList, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
+        List<Map.Entry<Integer, Integer>> userList = new LinkedList<Map.Entry<Integer, Integer>>(userCount.entrySet());
+        Collections.sort(userList, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return (o1.getValue()) - (o2.getValue());
             }
         });
-        System.out.println("5 most inactive Users as per comments & Posts : ");
-        for (int i = 0; i < commentList.size() && i < 5; i++) {
-            System.out.println("User id :" + commentList.get(i));
+        System.out.println("5 most inactive Users as per Comments & Posts : ");
+        for (int i = 0; i < userList.size() && i < 5; i++) {
+            System.out.println("User id :" + userList.get(i) + "<-Comments+Posts");
+        }
+    }
+    
+    public void proactiveUserComPosLikes() {
+        Map<Integer, Integer> userCount = new HashMap<>();
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        for (User user : users.values()) {
+            int comment = 0;
+            int post = 0;
+            for (Comment c : user.getComments()) {
+                comment++;
+            }
+            for (Post p : posts.values()) {
+                if (p.getUserId() == user.getId()) {
+                    post++;
+                }
+            }
+            int totCount = comment + post;
+            userCount.put(user.getId(), totCount);
+        }
+        List<Map.Entry<Integer, Integer>> userList = new LinkedList<Map.Entry<Integer, Integer>>(userCount.entrySet());
+        Collections.sort(userList, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return (o2.getValue()) - (o1.getValue());
+            }
+        });
+        System.out.println("5 most proactive Users as per Comments & Posts : ");
+        for (int i = 0; i < userList.size() && i < 5; i++) {
+            System.out.println("User id :" + userList.get(i) + "<-Comments+Posts");
         }
     }
 }

@@ -89,6 +89,7 @@ public class Lab_8 {
         helper.getFiveMostLikedComment();
         helper.inactiveUserComments();
         helper.inactiveUserComPosLikes();
+        helper.proactiveUserComPosLikes();
     }
     
 }
