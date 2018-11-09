@@ -88,7 +88,7 @@ public class Lab_8 {
         helper.userWithMostLikes();
         helper.getFiveMostLikedComment();
         helper.inactiveUserComments();
-        helper.inactiveUser();
+        helper.inactiveUserComPosLikes();
     }
     
 }

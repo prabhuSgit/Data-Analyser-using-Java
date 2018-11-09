@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -71,23 +72,47 @@ public class AnalysisHelper {
                 comments++;
             }
             userLikecount.put(user.getId(), comments);
-            System.out.println(user.getId() + " " + comments);
         }
-        List<Integer> commentList = new ArrayList<>(userLikecount.values());
+        List<Map.Entry<Integer, Integer>> userList = new LinkedList<Map.Entry<Integer, Integer>>(userLikecount.entrySet());
+        Collections.sort(userList, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return (o1.getValue()) - (o2.getValue());
+            }
+        });
+        System.out.println("5 most inactive Users as per Comments: ");
+        for (int i = 0; i < userList.size() && i < 5; i++) {
+            System.out.println("User id :" + userList.get(i));
+        }
+    }
+
+    public void inactiveUserComPosLikes() {
+        Map<Integer, Integer> userCount = new HashMap<>();
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        for (User user : users.values()) {
+            int comment = 0;
+            int post = 0;
+            for (Comment c : user.getComments()) {
+//                if (c.getUserId() == p.getUserId()) {
+                comment++;
+            }
+            for (Post p : posts.values()) {
+                if (p.getUserId() == user.getId()) {
+                    post++;
+                }
+            }
+//            userCount.put(user.getId(), count);
+        }
+        List<Integer> commentList = new ArrayList<>(userCount.values());
         Collections.sort(commentList, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1 - o2;
             }
         });
-
-        System.out.println("5 most inactive Users as per comments: ");
+        System.out.println("5 most inactive Users as per comments & Posts : ");
         for (int i = 0; i < commentList.size() && i < 5; i++) {
             System.out.println("User id :" + commentList.get(i));
         }
-    }
-
-    public void inactiveUser() {
-
     }
 }

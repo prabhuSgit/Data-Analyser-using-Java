@@ -85,14 +85,11 @@ public class DataGenerator {
                 e.printStackTrace();
             }
         }
-        
-        
-        
     }
     
     private void generateCommentColumns() throws IOException{
         int postId = 0;
-        int postingUserId = rand.nextInt(postIdsRange);
+        int postingUserId = rand.nextInt(userIdsRange);
         int commentId = 0;
         //the loop for orders
         while(postId < postIdsRange && commentId < commentIdsRange) {
@@ -107,10 +104,9 @@ public class DataGenerator {
                 commentId++;
                 iterations--;
             }
-            postingUserId = rand.nextInt(postIdsRange);
+            postingUserId = rand.nextInt(userIdsRange);
             postId++;
         }
-        
     }
     
     private void generateUserFile() throws IOException{
