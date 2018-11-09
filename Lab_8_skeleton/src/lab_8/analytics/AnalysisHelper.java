@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -100,31 +101,28 @@ public class AnalysisHelper {
     public void getInactiveUsersBasedOnPosts() {
         Map<Integer, Integer> userpostcount = new HashMap<Integer, Integer>();
         Map<Integer, Post> posts = DataStore.getInstance().getPosts();
-        List<Post> postList = new ArrayList<>(posts.values());
-        Map<Integer, User> users = DataStore.getInstance().getUsers();
-        //Map<Integer, Post> posts = DataStore.getInstance().getPosts();
-        int postscount = 0;
-        for (User user : users.values()) {
-            //for(Comment c : post.getComments()){
-            postscount++;
-//            if (userpostcount.containsKey(post.getUserId())) {
-//                postscount = userpostcount.get(post.getUserId());
-//            }
-//            postscount += post.getPostId();
-            userpostcount.put(user.getId(), postscount);
-            postList.add(user.getId(), postscount);
-            //}
+        for (Post p : posts.values()) {
+            if (userpostcount.containsKey(p.getUserId())) {
+                int count = userpostcount.get(p.getUserId());
+                userpostcount.put(p.getUserId(), count + 1);
+            } else {
+                userpostcount.put(p.getUserId(), 1);
+            }
+
         }
 
-        int min = 0;
-        int minID = 0;
-        for (int id : userpostcount.keySet()) {
-            if (userpostcount.get(id) > min && userpostcount.get(id) < 5) {
-                min = userpostcount.get(id);
-                minID = id;
+        List<Map.Entry<Integer, Integer>> postList
+                = new LinkedList<Map.Entry<Integer, Integer>>(userpostcount.entrySet());
+
+        Collections.sort(postList, new Comparator<Map.Entry<Integer, Integer>>() {
+            public int compare(Map.Entry<Integer, Integer> o1,
+                    Map.Entry<Integer, Integer> o2) {
+                return (o1.getValue()) - (o2.getValue());
             }
+        });
+        System.out.println("5 most inactive Users as per posts: ");
+        for (int i = 0; i < postList.size() && i < 5; i++) {
+            System.out.println("User id :" + postList.get(i));
         }
-        System.out.println("Top 5 Inactive users: " + minID);
-        //System.out.println("User with less posts: " + minID);
     }
 }

@@ -15,15 +15,13 @@ public class Comment {
     private int postId;
     private String text;
     private int likes;
-    private int comments;
 
-    public Comment(int id, int userId, int postId, String text, int likes, int comments) {
+    public Comment(int id, int userId, int postId, String text, int likes) {
         this.id = id;
         this.userId = userId;
         this.postId = postId;
         this.text = text;
         this.likes = likes;
-        this.comments = comments;
     }
 
     
@@ -67,15 +65,6 @@ public class Comment {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public void setComments(int comments) {
-        this.comments = comments;
-    }
-    
 
     @Override
     public String toString() {

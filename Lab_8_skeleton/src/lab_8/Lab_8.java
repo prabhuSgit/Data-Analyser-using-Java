@@ -64,7 +64,7 @@ public class Lab_8 {
         int postId = Integer.parseInt(row[1]);
         String comment = row[5];
         int comments = Integer.parseInt(row[2]);
-        Comment c = new Comment(commentId,commentinguserId, postId, comment,likes, comments);
+        Comment c = new Comment(commentId,commentinguserId, postId, comment,likes);
         DataStore.getInstance().getComments().put(commentId,c);
         Map<Integer,User> users = DataStore.getInstance().getUsers();
         if(users.containsKey(commentinguserId))
