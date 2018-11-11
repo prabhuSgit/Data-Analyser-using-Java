@@ -21,7 +21,7 @@ public class DataGenerator {
     private FileWriter writer;
     private File file;
     
-    private final Random rand;
+    private final Random rand;  //declaration
     
     private final int userIdsRange;
     private final int commentIdsRange;
@@ -38,7 +38,7 @@ public class DataGenerator {
     
     private DataGenerator() throws IOException {
                 
-        rand = new Random();
+        rand = new Random();        //initialization
         
         userIdsRange = 10;
         commentIdsRange = 1000;
@@ -78,8 +78,8 @@ public class DataGenerator {
             
         }finally{
             try {
-                writer.flush();
-                writer.close();
+                writer.flush();     //writes the content of the buffer to the destination and makes the buffer empty for further data to store but it does not closes the stream permanently.
+                writer.close();     // permanently close
             } catch (IOException e) {
                 System.out.println("Error while flushing/closing fileWriter !!!");
                 e.printStackTrace();
@@ -87,7 +87,7 @@ public class DataGenerator {
         }
     }
     
-    private void generateCommentColumns() throws IOException{
+ private void generateCommentColumns() throws IOException{
         int postId = 0;
         int postingUserId = rand.nextInt(userIdsRange);
         int commentId = 0;
@@ -104,6 +104,7 @@ public class DataGenerator {
                 commentId++;
                 iterations--;
             }
+
             postingUserId = rand.nextInt(userIdsRange);
             postId++;
         }

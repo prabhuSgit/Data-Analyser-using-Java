@@ -200,4 +200,56 @@ public class AnalysisHelper {
            System.out.println("User id :" + postList.get(i));
        }
    }
+
+    public void getAverage() {
+
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        Map<Integer, Integer> userLikecount = new HashMap<Integer, Integer>();
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        int count = 0;
+
+        int liked = 0;
+        int totalcomm= 0;
+        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("Average number of likes per comment: ");
+        for (Post post : posts.values()) {
+            //System.out.println("comment count: " + post.getComments());
+            for (Comment c : post.getComments()) {
+              //  System.out.println("post id: " + post.getPostId());
+                int likes = 0;
+                likes += c.getLikes();
+                userLikecount.put(post.getPostId(), likes);
+                //System.out.println("likes :" + likes);
+                liked += likes;
+                totalcomm++;
+            }
+        }
+        for (int i = 0; i < commentList.size(); i++) {
+            count++;
+        }
+        System.out.println("Commments :" + count);
+        System.out.println("Likes :" + liked);
+        System.out.println("average :" + (liked / count));
+        System.out.println("---------------------------------------------------------------------------------------");
+    }
+
+    public void getPostMostLikedComment() {
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<>(comments.values());
+        System.out.println("---------------------------------------------------------------------------------------");
+        
+        Collections.sort(commentList, new Comparator<Comment>() {
+            @Override
+            public int compare(Comment o1, Comment o2) {
+                //so as to get decending list
+                return o2.getLikes() - o1.getLikes();
+            }
+        });
+        System.out.println("Post with most liked comments :");
+        for (int i = 0; i < commentList.size() && i < 1; i++) {
+            System.out.println(commentList.get(i));
+        }
+    }
+
 }
