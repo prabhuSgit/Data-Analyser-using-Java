@@ -201,7 +201,7 @@ public class AnalysisHelper {
        }
    }
 
-    public void getAverage() {
+     public void getAverage() {
 
         Map<Integer, Post> posts = DataStore.getInstance().getPosts();
         Map<Integer, Integer> userLikecount = new HashMap<Integer, Integer>();
